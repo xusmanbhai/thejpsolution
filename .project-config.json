@@ -1,0 +1,35 @@
+{
+  "build_command": "pnpm run build",
+  "capabilities": [],
+  "dev_command": "pnpm run dev",
+  "env_vars": {},
+  "experiments": null,
+  "git_remote": {
+    "repo_url": "s3://vida-prod-gitrepo/webdev-git/310519663210731378/nLzKcVbaxZQWgA4ZtikVuo",
+    "access_key_id": "ASIAZV3A2ECZLI6QW3HP",
+    "secret_access_key": "qc2ccnibQlvLz5qXKgQfJErCaxXv7nPQ8V9HvGh7",
+    "session_token": "IQoJb3JpZ2luX2VjEPr//////////wEaCXVzLWVhc3QtMSJHMEUCIQDLmCSUmfF6A9dT5mYmB+POtdJD0W+DWX0UqGLs4PoVJgIgClWVipWn8ytMVxuSe405IfxUG+0OUkoy9mo0aPX5ldUq/wMIw///////////ARAEGgw2NjUzODYwOTg4NjYiDPfXwZua2PCAy5y7JyrTA9+UWY6oCNImDvwaO1u2JZD+Tv+rVltsPaGvMPJL70td1ihRsWBk4DcNFFrElvszhPywVXd+ystsDMFSNHhAeJcfm8w72qSx4GegvV92JnY+MFuqIBq29mHGb3lhWM0PVNueWN+de8JMWj/uH+IfV1Yp+IGLO+UQTOQmkNDxSXrQqc4p/0v+O8856dQiyndvpyiaybPsnGhbN4SqasjYEJ9EnFHar+Tv06jq77HsYK1m3XnCPKrMLAIF0tPNEdp27vBJ0D/6e+tEa89z2zXrxb8P/2W6qycu4+WmTdMlNS7jIFzt54NnnMci515iZVAlihTDRn6TtFTiGky92tphoxRr1KTgKjOoHAyEeApCApm3gf6XTKzR0RNyd3M6PMActynntAOuBfKeKpli88KBhfCi+LPeNPZE0UNpqW/KBilgkq+96Ib1RV7Je+lwva6HG+oZBj4DFcrYAx29EG1lHvKFmSpRCDw67+wakpy9Klv0Nhp8e7z4ITVKA/1SUzrhAd1BeeX2aFPcBOC+CkPVVRxgQAAFswoDwNpPDqd2P+intROsVRXhLijGm2mFD3Mbpy6YIkkD2klTa4Jrmame7Nyd0yhgM4WOSurV84dAb5sFl9z1MLykrdAGOp0BYPHPDnPIHbIgSWjueqYPVToqzMpQNx37pxA23DfMxLkaSCJWEsphfmFf3xkVZo9ZjLvaMICQBaqCdAmif0c37UrgCbrF9rC/u67lPmI7j77wMrgv9Y7bJvestbEWBOOzLGAuBM3Ja/oJoImXT2KQgGMrKG57eXF41eHH4t3Nv9crKCV+LceiyUr797KirASHgAyYU2l3m7QRtIj4eA==",
+    "expiration": "2026-05-19T05:54:04.000Z"
+  },
+  "name": "jp-probate-landing",
+  "path": "/home/ubuntu/jp-probate-landing",
+  "port": 3000,
+  "secrets": {
+    "BUILT_IN_FORGE_API_KEY": "YbqXgmXfmsqaLVUehGZL9f",
+    "BUILT_IN_FORGE_API_URL": "https://forge.manus.ai",
+    "JWT_SECRET": "X94cq692SDRYhmSp4KHWnU",
+    "OAUTH_SERVER_URL": "https://api.manus.im",
+    "OWNER_NAME": "Ammar khan",
+    "OWNER_OPEN_ID": "ZJx26aBVy2VnfobQkqdnZz",
+    "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
+    "VITE_ANALYTICS_WEBSITE_ID": "23b82ff8-69ba-4072-86bf-81dc0d16949c",
+    "VITE_APP_ID": "nLzKcVbaxZQWgA4ZtikVuo",
+    "VITE_APP_LOGO": "",
+    "VITE_APP_TITLE": "The JP Solution Probate Landing Page",
+    "VITE_FRONTEND_FORGE_API_KEY": "G7m9yyrwDFFVkt9cxXjWMs",
+    "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
+    "VITE_OAUTH_PORTAL_URL": "https://manus.im"
+  },
+  "template_id": "web-static",
+  "test_command": "pnpm test"
+}
