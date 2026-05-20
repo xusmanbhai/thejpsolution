@@ -5,6 +5,8 @@
 # Build outputs
 dist/
 build/
+netlify/functions/consultation.cjs
+netlify/functions/consultation.js
 *.dist
 
 # Environment variables

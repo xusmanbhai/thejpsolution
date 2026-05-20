@@ -10,6 +10,7 @@
   from = "/api/consultation"
   to = "/.netlify/functions/consultation"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/*"

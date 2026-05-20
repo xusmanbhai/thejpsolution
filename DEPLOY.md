@@ -32,7 +32,19 @@ Output:
    | `CONSULTATION_TO` | `thejpsolution1@gmail.com,joe@bourbonholdings.net` |
    | `CONSULTATION_REPLY_TO` | `joe@bourbonholdings.net` |
 
-4. Deploy. Form posts to `/api/consultation` → Netlify Function → Gmail SMTP.
+4. Deploy. Form posts to `/api/consultation` → Netlify Function (`consultation.js`) → Gmail SMTP.
+
+5. After deploy, open **Netlify → Functions** and confirm `consultation` is listed. If missing, the form will fail on the live site.
+
+6. Test the API (replace with your domain):
+
+   ```bash
+   curl -X POST https://probate.thejpsolution.com/api/consultation \
+     -H "Content-Type: application/json" \
+     -d "{\"fullName\":\"Test\",\"email\":\"you@example.com\",\"phone\":\"555\",\"role\":\"Heir\",\"propertyAddress\":\"123 Main\",\"solutionType\":\"Other\",\"description\":\"Test\"}"
+   ```
+
+   Expect: `{"success":true}`. If you see HTML instead, the function redirect is not active — redeploy after pulling the latest `netlify.toml`.
 
 **Do not** commit `server/.env` — use Netlify env vars only.
 

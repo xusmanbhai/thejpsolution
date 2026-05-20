@@ -1,8 +1,4 @@
-import type { Handler, HandlerEvent, HandlerResponse } from "@netlify/functions";
 import { handleConsultationSubmit } from "../../server/consultation";
-import { loadProjectEnv } from "../../server/loadEnv";
-
-loadProjectEnv();
 
 const headers = {
   "Content-Type": "application/json",
@@ -11,9 +7,11 @@ const headers = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-export const handler: Handler = async (
-  event: HandlerEvent,
-): Promise<HandlerResponse> => {
+export const handler = async (event: {
+  httpMethod: string;
+  body: string | null;
+  isBase64Encoded?: boolean;
+}) => {
   if (event.httpMethod === "OPTIONS") {
     return { statusCode: 204, headers, body: "" };
   }
@@ -27,7 +25,11 @@ export const handler: Handler = async (
   }
 
   try {
-    const body = event.body ? JSON.parse(event.body) : {};
+    let rawBody = event.body ?? "";
+    if (event.isBase64Encoded && rawBody) {
+      rawBody = Buffer.from(rawBody, "base64").toString("utf-8");
+    }
+    const body = rawBody ? JSON.parse(rawBody) : {};
     const result = await handleConsultationSubmit(body);
 
     if (result.ok) {
@@ -43,11 +45,14 @@ export const handler: Handler = async (
       headers,
       body: JSON.stringify({ success: false, error: result.message }),
     };
-  } catch {
+  } catch (err) {
+    console.error("[netlify/consultation]", err);
+    const message =
+      err instanceof Error ? err.message : "Failed to process consultation request";
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ success: false, error: "Invalid request" }),
+      body: JSON.stringify({ success: false, error: message }),
     };
   }
 };

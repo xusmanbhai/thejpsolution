@@ -59,7 +59,17 @@ export default function ConsultationModal({ open, onOpenChange }: ConsultationMo
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      const data = (await res.json()) as { success?: boolean; error?: string };
+      const raw = await res.text();
+      let data: { success?: boolean; error?: string } = {};
+      try {
+        data = raw ? JSON.parse(raw) : {};
+      } catch {
+        throw new Error(
+          res.ok
+            ? "Invalid server response."
+            : `Request failed (${res.status}). The contact API may not be deployed.`,
+        );
+      }
       if (!res.ok || !data.success) {
         throw new Error(data.error || "Could not send your request. Please try again.");
       }
