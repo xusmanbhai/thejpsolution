@@ -243,30 +243,44 @@ function vitePluginStorageProxy(): Plugin {
 function vitePluginOptionalAnalytics(): Plugin {
   return {
     name: "optional-analytics",
-    transformIndexHtml(html) {
-      const endpoint = process.env.VITE_ANALYTICS_ENDPOINT?.trim();
-      const websiteId = process.env.VITE_ANALYTICS_WEBSITE_ID?.trim();
-      if (!endpoint || !websiteId || endpoint.includes("%VITE_")) {
-        return html.replace(
-          /\s*<script[\s\S]*?%VITE_ANALYTICS[\s\S]*?<\/script>\s*/i,
-          "\n",
-        );
-      }
-      return html
-        .replace(/%VITE_ANALYTICS_ENDPOINT%/g, endpoint)
-        .replace(/%VITE_ANALYTICS_WEBSITE_ID%/g, websiteId);
+    transformIndexHtml: {
+      order: "post",
+      handler(html) {
+        const endpoint = process.env.VITE_ANALYTICS_ENDPOINT?.trim();
+        const websiteId = process.env.VITE_ANALYTICS_WEBSITE_ID?.trim();
+        if (!endpoint || !websiteId) return html;
+
+        return {
+          html,
+          tags: [
+            {
+              tag: "script",
+              attrs: {
+                defer: true,
+                src: `${endpoint.replace(/\/$/, "")}/umami`,
+                "data-website-id": websiteId,
+              },
+              injectTo: "body",
+            },
+          ],
+        };
+      },
     },
   };
 }
+
+const devOnlyPlugins: Plugin[] = [
+  vitePluginManusRuntime(),
+  vitePluginManusDebugCollector(),
+  vitePluginStorageProxy(),
+];
 
 const plugins = [
   react(),
   tailwindcss(),
   vitePluginOptionalAnalytics(),
   vitePluginConsultationApi(),
-  vitePluginManusRuntime(),
-  vitePluginManusDebugCollector(),
-  vitePluginStorageProxy(),
+  ...(process.env.NODE_ENV === "production" ? [] : devOnlyPlugins),
 ];
 
 export default defineConfig({
