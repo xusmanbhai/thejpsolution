@@ -3,8 +3,10 @@
 ## Build (verified)
 
 ```bash
-npm run build
+npm ci && npm run build
 ```
+
+Netlify uses **npm** (not pnpm). Commit `package-lock.json` to Git.
 
 Output:
 - **Static site:** `dist/public/`
